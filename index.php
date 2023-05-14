@@ -30,13 +30,13 @@
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Login</h4>
                                     </div>
-                                    <form class="user">
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username" name="username"></div>
+                                    <form class="user" action="functions/login.php" method="post">
+                                        <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username" name="username"></div>
                                         <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"></div>
                                         <hr>
                                         <div class="mb-3">
                                             <div class="custom-control custom-checkbox small"></div>
-                                        </div><a class="btn btn-primary d-block btn-user w-100" role="button" href="dashboard.php">Login</a>
+                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button>
                                     </form>
                                 </div>
                             </div>
