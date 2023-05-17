@@ -26,24 +26,41 @@
                 </nav>
                 <div class="container-fluid">
                     <h3 class="text-dark mb-4">Inventory Management</h3>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-4 mb-4">
+                            <div class="card shadow border-start-warning py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                    <?php
+                                            // Connect to the database.
+                                            $db = new PDO('mysql:host=localhost;dbname=db_hash', 'root', '');
+
+                                            // Get the total number of users.
+                                            $sql = "SELECT COUNT(*) FROM products";
+                                            $stmt = $db->prepare($sql);
+                                            $stmt->execute();
+                                            $row = $stmt->fetch();
+                                            $total_products = $row['COUNT(*)'];
+
+                                            // Display the total number of users.
+                                            echo "<div class=\"col me-2\">
+                                                    <div class=\"text-uppercase text-info fw-bold text-xs mb-1\"><span>total product</span></div>
+                                                    <div class=\"text-dark fw-bold h5 mb-0\"><span>$total_products</span></div>
+                                                </div>";
+
+                                            ?>
+                                        <div class="col-auto"><i class="fas fa-table fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card shadow">
                         <div class="card-header py-3">
                             <p class="text-primary m-0 fw-bold">Product List</p><button class="btn btn-primary btn-icon-split" type="button" data-bs-target="#add-product" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-download"></i></span><span class="text-white text">Add Product</span></button>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>&nbsp;</label></div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
-                                </div>
-                            </div>
+                            
                             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                                 <table class="table table-hover table-bordered my-0" id="dataTable">
                                     <thead>
@@ -52,58 +69,17 @@
                                             <th>Product Name</th>
                                             <th>Size</th>
                                             <th>Qty</th>
-                                            <th>Product Created</th>
                                             <th>Price</th>
+                                            <th>Product Created</th>
                                             <th>Product Options (Stock In, Stock Out, Update and Remove)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/shoes.png">&nbsp;000001</td>
-                                            <td>Addidas</td>
-                                            <td>Small</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                            <td><a class="btn btn-success btn-icon-split" role="button" style="margin: 2px;" data-bs-target="#stock-in" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-arrow-up"></i></span><span class="text-white text">Stock In</span></a><button class="btn btn-info btn-icon-split" type="button" style="margin: 2px;" data-bs-target="#stock-out" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-arrow-down"></i></span><span class="text-white text">Stock Out</span></button><a class="btn btn-warning btn-icon-split" role="button" style="margin: 2px;" data-bs-target="#update-product" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-exclamation-triangle"></i></span><span class="text-white text">Update</span></a><button class="btn btn-danger btn-icon-split" type="button" style="margin: 2px;" data-bs-target="#confirmation" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-trash"></i></span><span class="text-white text">Remove</span></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/shoes.png">000002</td>
-                                            <td>Lumigas</td>
-                                            <td>Medium</td>
-                                            <td>47</td>
-                                            <td>2009/10/09</td>
-                                            <td>$1,200,000</td>
-                                            <td><a class="btn btn-success btn-icon-split" role="button" style="margin: 2px;" data-bs-target="#stock-in" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-arrow-up"></i></span><span class="text-white text">Stock In</span></a><button class="btn btn-info btn-icon-split" type="button" style="margin: 2px;" data-bs-target="#stock-out" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-arrow-down"></i></span><span class="text-white text">Stock Out</span></button><a class="btn btn-warning btn-icon-split" role="button" style="margin: 2px;" data-bs-target="#update-product" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-exclamation-triangle"></i></span><span class="text-white text">Update</span></a><button class="btn btn-danger btn-icon-split" type="button" style="margin: 2px;" data-bs-target="#confirmation" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-trash"></i></span><span class="text-white text">Remove</span></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/shoes.png">&nbsp;00003</td>
-                                            <td>Nanigas</td>
-                                            <td>Large</td>
-                                            <td>66</td>
-                                            <td>2009/01/12<br></td>
-                                            <td>$86,000</td>
-                                            <td><a class="btn btn-success btn-icon-split" role="button" style="margin: 2px;" data-bs-target="#stock-in" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-arrow-up"></i></span><span class="text-white text">Stock In</span></a><button class="btn btn-info btn-icon-split" type="button" style="margin: 2px;" data-bs-target="#stock-out" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-arrow-down"></i></span><span class="text-white text">Stock Out</span></button><a class="btn btn-warning btn-icon-split" role="button" style="margin: 2px;" data-bs-target="#update-product" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-exclamation-triangle"></i></span><span class="text-white text">Update</span></a><button class="btn btn-danger btn-icon-split" type="button" style="margin: 2px;" data-bs-target="#confirmation" data-bs-toggle="modal"><span class="text-white-50 icon"><i class="fas fa-trash"></i></span><span class="text-white text">Remove</span></button></td>
-                                        </tr>
+                                        <?php include_once 'functions/view-products.php'; ?>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -123,7 +99,7 @@
                 </div>
                 <div class="modal-body">
                     <p>Product Information</p>
-                    <form class="text-center" method="post">
+                    <form class="text-center" action="functions/add-product.php" method="post">
                         <div class="mb-3"><input class="form-control" type="text" name="product_name" placeholder="Product Name" required=""></div>
                         <div class="mb-3"><input class="form-control" type="text" name="size" placeholder="Size" required=""></div>
                         <div class="mb-3"><input class="form-control" type="text" name="qty" placeholder="Quantity"></div>
@@ -139,14 +115,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add Product</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
+                    <h4 class="modal-title">Update Product</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <p>Product Information</p>
-                    <form class="text-center" method="post">
-                        <div class="mb-3"><input class="form-control" type="text" name="product_name" placeholder="Product Name" required=""></div>
-                        <div class="mb-3"><input class="form-control" type="text" name="size" placeholder="Size" required=""></div>
-                        <div class="mb-3"><input class="form-control" type="text" name="price" placeholder="Price" required=""></div>
+                    <form class="text-center" action="functions/update-product.php"  method="post">
+                        <input type="hidden" name="product_id">
+                        <div class="mb-3"><input class="form-control" type="text" name="product_name" placeholder="Product Name" required></div>
+                        <div class="mb-3"><input class="form-control" type="text" name="size" placeholder="Size" required></div>
+                        <div class="mb-3"><input class="form-control" type="text" name="price" placeholder="Price" required></div>
                         <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Update Product</button></div>
                     </form>
                 </div>
@@ -162,11 +139,9 @@
                 </div>
                 <div class="modal-body">
                     <p>Product Information</p>
-                    <form class="text-center" method="post">
-                        <div class="mb-3"></div>
-                        <div class="mb-3"></div>
-                        <div class="mb-3"><input class="form-control" type="text" name="qty" placeholder="Quantity"></div>
-                        <div class="mb-3"></div>
+                    <form class="text-center" action="functions/stock-in.php" method="post">
+                        <input type="hidden" name="product_id">
+                        <div class="mb-3"><input class="form-control" type="text" name="qty" placeholder="Quantity" required></div>
                         <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Stock In</button></div>
                     </form>
                 </div>
@@ -182,11 +157,9 @@
                 </div>
                 <div class="modal-body">
                     <p>Product Information</p>
-                    <form class="text-center" method="post">
-                        <div class="mb-3"></div>
-                        <div class="mb-3"></div>
-                        <div class="mb-3"><input class="form-control" type="text" name="qty" placeholder="Quantity"></div>
-                        <div class="mb-3"></div>
+                    <form class="text-center" action="functions/stock-out.php" method="post">
+                        <input type="hidden" name="product_id">
+                        <div class="mb-3"><input class="form-control" type="text" name="qty" placeholder="Quantity" required></div>
                         <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Stock out</button></div>
                     </form>
                 </div>
@@ -201,12 +174,58 @@
                     <h4 class="modal-title">Confirmation</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to remove this product?</p>
+                <p>Are you sure you want to remove this product?</p>
                 </div>
-                <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-danger" type="button">Remove</button></div>
+                <form action="functions/remove-product.php" method="post">
+                <input type="hidden" name="product_id">
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-danger" type="submit">Remove</button></div>
+                </form>
             </div>
         </div>
     </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script>
+        
+        $('button[data-bs-target="#stock-in"]').on('click', function() {
+        // Get the user ID from the data attribute.
+        var product_id = $(this).data('product-id');
+        console.log(product_id);
+        // Set the value of all input fields with the name "userid" to the user ID.
+        $('input[name="product_id"]').each(function() {
+            $(this).val(product_id);
+        });
+        });
+
+        $('button[data-bs-target="#stock-out"]').on('click', function() {
+        // Get the user ID from the data attribute.
+        var product_id = $(this).data('product-id');
+        console.log(product_id);
+        // Set the value of all input fields with the name "userid" to the user ID.
+        $('input[name="product_id"]').each(function() {
+            $(this).val(product_id);
+        });
+        });
+
+        $('button[data-bs-target="#update-product"]').on('click', function() {
+        // Get the user ID from the data attribute.
+        var product_id = $(this).data('product-id');
+        console.log(product_id);
+        // Set the value of all input fields with the name "userid" to the user ID.
+        $('input[name="product_id"]').each(function() {
+            $(this).val(product_id);
+        });
+        });
+
+        $('button[data-bs-target="#confirmation"]').on('click', function() {
+        // Get the user ID from the data attribute.
+        var product_id = $(this).data('product-id');
+        console.log(product_id);
+        // Set the value of all input fields with the name "userid" to the user ID.
+        $('input[name="product_id"]').each(function() {
+            $(this).val(product_id);
+        });
+        });
+    </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>

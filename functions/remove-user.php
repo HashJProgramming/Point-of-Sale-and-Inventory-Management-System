@@ -7,7 +7,7 @@ $user_id = $_POST['userid'];
 $db = new PDO('mysql:host=localhost;dbname=db_hash', 'root', '');
 
 // Delete the user from the table.
-$sql = "DELETE FROM users WHERE ID = :user_id";
+$sql = "DELETE FROM users WHERE id = :user_id";
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':user_id', $user_id);
 $stmt->execute();

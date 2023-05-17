@@ -7,7 +7,7 @@ $user_id = $_POST['userid'];
 $db = new PDO('mysql:host=localhost;dbname=db_hash', 'root', '');
 
 // Get the current password from the database.
-$sql = "SELECT password FROM users WHERE ID = :user_id";
+$sql = "SELECT password FROM users WHERE id = :user_id";
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':user_id', $user_id);
 $stmt->execute();
