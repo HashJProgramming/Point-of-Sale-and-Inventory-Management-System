@@ -19,6 +19,7 @@
             include_once 'functions/authentication.php';
             include_once 'functions/sidebar.php';
         ?>
+        
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
