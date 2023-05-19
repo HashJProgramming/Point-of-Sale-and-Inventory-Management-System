@@ -13,9 +13,10 @@ $price = $_POST['price'];
 $db = new PDO('mysql:host=localhost;dbname=db_hash', 'root', '');
 
 // Check if the product already exists in the database
-$sql = "SELECT * FROM products WHERE product_name = :product_name";
+$sql = "SELECT * FROM products WHERE product_name = :product_name AND size = :size";
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':product_name', $product_name);
+$stmt->bindParam(':size', $size);
 $stmt->execute();
 $results = $stmt->fetchAll();
 

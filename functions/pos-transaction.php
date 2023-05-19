@@ -16,8 +16,18 @@ if ($discount == null) {
     $discount = 0;
 }
 
+if ($amount == null) {
+    $amount = 0;
+}
+
 // Calculate the discounted sales
 $discounted_sales = $sales - $discount ;
+$payment = $amount - ($sales - $discount);
+if ($_POST['total_sales'] < $payment) {
+    header('Location: ../insufficient.php?discount='.$discount.'&amount='.$amount.'&sales='.$sales.'&payment='.$payment);
+    exit;
+}
+
 
 // Connect to the database
 $db = new PDO('mysql:host=localhost;dbname=db_hash', 'root', '');
