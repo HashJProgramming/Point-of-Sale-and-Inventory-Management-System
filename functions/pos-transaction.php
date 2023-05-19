@@ -22,8 +22,8 @@ if ($amount == null) {
 
 // Calculate the discounted sales
 $discounted_sales = $sales - $discount ;
-$payment = $amount - ($sales - $discount);
-if ($_POST['total_sales'] < $payment) {
+$payment = $amount + $discount;
+if ($payment < $_POST['total_sales']) {
     header('Location: ../insufficient.php?discount='.$discount.'&amount='.$amount.'&sales='.$sales.'&payment='.$payment);
     exit;
 }
