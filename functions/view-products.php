@@ -4,7 +4,7 @@
 $db = new PDO('mysql:host=localhost;dbname=db_hash', 'root', '');
 
 // Get all data from the products table
-$sql = 'SELECT * FROM products';
+$sql = 'SELECT * FROM products ORDER BY product_name ASC';
 $stmt = $db->prepare($sql);
 $stmt->execute();
 $results = $stmt->fetchAll();

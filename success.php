@@ -49,14 +49,25 @@
                                     <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
                                 </svg></span><span>Purchase Date: <?php $date = date('Y-m-d H:i:s'); echo $date; ?></span></li>
                             </ul>
-                        </div><img src="assets/img/qrcode.png" width="100%" height="80%">
-                       <a class="btn btn-primary d-block w-100" role="button" href="point-of-sale.php">Go back</a>
+                        </div>
+    
                     </div>
                 </div>
+                <button class="btn btn-primary d-block w-100" style="margin-bottom:10px; margin-top:10px" onclick="printReceipt()">Print</button>
+                <a class="btn btn-primary d-block w-100" role="button" href="point-of-sale.php">Go back</a>
             </div>
         </div>
     </div>
-    
+    <script>
+        function printReceipt() {
+        var receipt = document.querySelector('.card.border-primary.border-2');
+        var newWin = window.open('', 'Print-Window');
+        newWin.document.open();
+        newWin.document.write('<html><body onload="window.print()">' + receipt.innerHTML + '</body></html>');
+        newWin.document.close();
+        setTimeout(function(){newWin.close();},10);
+        }
+    </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>

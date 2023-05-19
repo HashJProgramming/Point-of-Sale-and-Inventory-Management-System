@@ -44,9 +44,9 @@
 
                                             // Display the total number of users.
                                             echo "<div class=\"col me-2\">
-                                                                                    <div class=\"text-uppercase text-info fw-bold text-xs mb-1\"><span>total users</span></div>
-                                                                                    <div class=\"text-dark fw-bold h5 mb-0\"><span>$total_users</span></div>
-                                                                                </div>";
+                                                <div class=\"text-uppercase text-info fw-bold text-xs mb-1\"><span>total users</span></div>
+                                                <div class=\"text-dark fw-bold h5 mb-0\"><span>$total_users</span></div>
+                                                </div>";
 
                                             ?>
                                         <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
@@ -123,8 +123,8 @@
                     <p>User Information</p>
                     <form class="text-center" action="functions/update-account.php" method="post">
                         <input type="hidden" name="userid">
-                        <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Confirm Password"></div>
-                        <div class="mb-3"><input class="form-control" type="password" name="new_password" placeholder="New Password"></div>
+                        <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Old Password"></div>
+                        <div class="mb-3"><input class="form-control" type="password" name="new_password" placeholder="Confirm Password"></div>
                         <div class="mb-3"></div>
                         <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Change Password</button></div>
                     </form>

@@ -31,15 +31,45 @@
                 <div class="container py-4 py-xl-5">
                     <div class="card shadow">
                         <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Inventory</p>
+                        </div>
+                        <div class="card-body">
+                            
+                            <div class="table-responsive table mt-2" id="dataTable-2" role="grid" aria-describedby="dataTable_info">
+                                <table class="table table-hover table-bordered my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Data ID</th>
+                                            <th>User</th>
+                                            <th>Product</th>
+                                            <th>Stock In</th>
+                                            <th>Stock Out</th>
+                                            <th>Data Created</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php  include_once 'functions/inventory-logs.php'; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container py-4 py-xl-5">
+                    <div class="card shadow">
+                        <div class="card-header py-3">
                             <p class="text-primary m-0 fw-bold">User Log</p>
                         </div>
+                        
                         <div class="card-body">
                             <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
                                 <table class="table table-hover table-bordered my-0" id="dataTable">
                                     <thead>
                                         <tr>
                                             <th>Data ID</th>
-                                            <th>User ID</th>
+                                            <th>User</th>
                                             <th>Type</th>
                                             <th>Sign-In</th>
                                             <th>Sign-Out</th>
@@ -55,34 +85,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="container py-4 py-xl-5">
-                    <div class="card shadow">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Inventory</p>
-                        </div>
-                        <div class="card-body">
-                            
-                            <div class="table-responsive table mt-2" id="dataTable-2" role="grid" aria-describedby="dataTable_info">
-                                <table class="table table-hover table-bordered my-0" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Data ID</th>
-                                            <th>User ID</th>
-                                            <th>Product Code</th>
-                                            <th>Stock In</th>
-                                            <th>Stock Out</th>
-                                            <th>Data Created</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php  include_once 'functions/inventory-logs.php'; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                           
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">

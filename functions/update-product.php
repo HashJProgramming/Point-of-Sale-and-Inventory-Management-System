@@ -12,6 +12,20 @@ $price = $_POST['price'];
 // Connect to the database
 $db = new PDO('mysql:host=localhost;dbname=db_hash', 'root', '');
 
+// Check if the product already exists in the database
+$sql = "SELECT * FROM products WHERE product_name = :product_name";
+$stmt = $db->prepare($sql);
+$stmt->bindParam(':product_name', $product_name);
+$stmt->execute();
+$results = $stmt->fetchAll();
+
+// If the product already exists in the database, do nothing
+if (count($results) > 0) {
+
+    header('Location: ../404.php?message=Product already exists in the database.&error=Product Name Already Exist');
+    exit;
+}
+
 // Update the product in the database
 $sql = "UPDATE products SET product_name = :product_name, size = :size, price = :price WHERE id = :product_id";
 $stmt = $db->prepare($sql);
