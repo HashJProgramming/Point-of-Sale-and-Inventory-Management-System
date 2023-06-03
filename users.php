@@ -15,11 +15,11 @@
 
 <body id="page-top">
     <div id="wrapper">
-    <?php
-            include_once 'functions/authentication.php';
-            include_once 'functions/sidebar.php';
+        <?php
+        include_once 'functions/authentication.php';
+        include_once 'functions/sidebar.php';
         ?>
-        
+
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
@@ -32,24 +32,24 @@
                             <div class="card shadow border-start-warning py-2">
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
-                                    <?php
-                                            // Connect to the database.
-                                            $db = new PDO('mysql:host=localhost;dbname=db_hash', 'root', '');
+                                        <?php
+                                        // Connect to the database.
+                                        $db = new PDO('mysql:host=localhost;dbname=db_hash', 'root', '');
 
-                                            // Get the total number of users.
-                                            $sql = "SELECT COUNT(*) FROM users";
-                                            $stmt = $db->prepare($sql);
-                                            $stmt->execute();
-                                            $row = $stmt->fetch();
-                                            $total_users = $row['COUNT(*)'];
+                                        // Get the total number of users.
+                                        $sql = "SELECT COUNT(*) FROM users";
+                                        $stmt = $db->prepare($sql);
+                                        $stmt->execute();
+                                        $row = $stmt->fetch();
+                                        $total_users = $row['COUNT(*)'];
 
-                                            // Display the total number of users.
-                                            echo "<div class=\"col me-2\">
+                                        // Display the total number of users.
+                                        echo "<div class=\"col me-2\">
                                                 <div class=\"text-uppercase text-info fw-bold text-xs mb-1\"><span>total users</span></div>
                                                 <div class=\"text-dark fw-bold h5 mb-0\"><span>$total_users</span></div>
                                                 </div>";
 
-                                            ?>
+                                        ?>
                                         <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
                                     </div>
                                 </div>
@@ -67,23 +67,23 @@
                             <div class="row">
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                            <table class="table table-hover table-bordered my-0" id="dataTable">
-                                <thead>
-                                    <tr>
-                                    <th>User ID</th>
-                                    <th>Username</th>
-                                    <th>Password</th>
-                                    <th>Type</th>
-                                    <th>User Created</th>
-                                    <th>Option</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php  include_once 'functions/view-users.php'; ?>
-                                </tbody>
+                                <table class="table table-hover table-bordered my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>User ID</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Type</th>
+                                            <th>User Created</th>
+                                            <th>Option</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php include_once 'functions/view-users.php'; ?>
+                                    </tbody>
                                 </table>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
@@ -103,9 +103,9 @@
                 </div>
                 <div class="modal-body">
                     <p>User Information</p>
-                    <form class="text-center"action="functions/create-account.php" method="post">
-                        <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Username" required=""></div>
-                        <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+                    <form class="text-center" action="functions/create-account.php" method="post">
+                        <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Username" minlength="5" pattern="^(?!\s).*$" required></div>
+                        <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password" minlength="5" pattern="^(?!\s).*$" required></div>
                         <div class="mb-3"></div>
                         <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Add User</button></div>
                     </form>
@@ -124,8 +124,8 @@
                     <p>User Information</p>
                     <form class="text-center" action="functions/update-account.php" method="post">
                         <input type="hidden" name="userid">
-                        <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Old Password"></div>
-                        <div class="mb-3"><input class="form-control" type="password" name="new_password" placeholder="Confirm Password"></div>
+                        <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Old Password" minlength="5" pattern="^(?!\s).*$" required></div>
+                        <div class="mb-3"><input class="form-control" type="password" name="new_password" placeholder="Confirm Password" minlength="5" pattern="^(?!\s).*$" required></div>
                         <div class="mb-3"></div>
                         <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Change Password</button></div>
                     </form>
@@ -144,33 +144,32 @@
                     <p>Are you sure you want to remove this user?</p>
                 </div>
                 <form action="functions/remove-user.php" method="post">
-                <input type="hidden" name="userid">
-                <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-danger" type="submit">Remove</button></div>
+                    <input type="hidden" name="userid">
+                    <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-danger" type="submit">Remove</button></div>
                 </form>
             </div>
         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script>
-        
         $('button[data-bs-target="#update"]').on('click', function() {
-        // Get the user ID from the data attribute.
-        var user_id = $(this).data('user-id');
-        console.log(user_id);
-        // Set the value of all input fields with the name "userid" to the user ID.
-        $('input[name="userid"]').each(function() {
-            $(this).val(user_id);
-        });
+            // Get the user ID from the data attribute.
+            var user_id = $(this).data('user-id');
+            console.log(user_id);
+            // Set the value of all input fields with the name "userid" to the user ID.
+            $('input[name="userid"]').each(function() {
+                $(this).val(user_id);
+            });
         });
 
         $('button[data-bs-target="#confirmation"]').on('click', function() {
-        // Get the user ID from the data attribute.
-        var user_id = $(this).data('user-id');
-        console.log(user_id);
-        // Set the value of all input fields with the name "userid" to the user ID.
-        $('input[name="userid"]').each(function() {
-            $(this).val(user_id);
-        });
+            // Get the user ID from the data attribute.
+            var user_id = $(this).data('user-id');
+            console.log(user_id);
+            // Set the value of all input fields with the name "userid" to the user ID.
+            $('input[name="userid"]').each(function() {
+                $(this).val(user_id);
+            });
         });
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

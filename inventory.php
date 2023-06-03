@@ -100,10 +100,10 @@
                 <div class="modal-body">
                     <p>Product Information</p>
                     <form class="text-center" action="functions/add-product.php" method="post">
-                        <div class="mb-3"><input class="form-control" type="text" name="product_name" placeholder="Product Name" required=""></div>
-                        <div class="mb-3"><input class="form-control" type="text" name="size" placeholder="Size" required=""></div>
-                        <div class="mb-3"><input class="form-control" type="text" name="qty" placeholder="Quantity"></div>
-                        <div class="mb-3"><input class="form-control" type="text" name="price" placeholder="Price" required=""></div>
+                        <div class="mb-3"><input class="form-control" type="text" pattern="^(?!\s).*$" name="product_name" placeholder="Product Name" required=""></div>
+                        <div class="mb-3"><input class="form-control" type="number" name="size" placeholder="Size" required=""></div>
+                        <div class="mb-3"><input class="form-control" type="number" name="qty" placeholder="Quantity"></div>
+                        <div class="mb-3"><input class="form-control" type="number" name="price" placeholder="Price" required=""></div>
                         <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Add Product</button></div>
                     </form>
                 </div>
@@ -121,9 +121,10 @@
                     <p>Product Information</p>
                     <form class="text-center" action="functions/update-product.php"  method="post">
                         <input type="hidden" name="product_id">
-                        <div class="mb-3"><input class="form-control" type="text" name="product_name" placeholder="Product Name" required></div>
-                        <div class="mb-3"><input class="form-control" type="text" name="size" placeholder="Size" required></div>
-                        <div class="mb-3"><input class="form-control" type="text" name="price" placeholder="Price" required></div>
+                        <div class="mb-3"><input class="form-control" type="text" pattern="^(?!\s).*$" name="product_name" placeholder="Product Name" required=""></div>
+                        <div class="mb-3"><input class="form-control" type="number" name="size" placeholder="Size" required=""></div>
+                        <div class="mb-3"><input class="form-control" type="number" name="qty" placeholder="Quantity"></div>
+                        <div class="mb-3"><input class="form-control" type="number" name="price" placeholder="Price" required=""></div>
                         <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Update Product</button></div>
                     </form>
                 </div>

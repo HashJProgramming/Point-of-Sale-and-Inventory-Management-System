@@ -108,8 +108,8 @@
                             <div class="card-body text-center p-4">
                                 <h6 class="text-uppercase text-muted card-subtitle">TOTAL</h6>
                                 <h4 class="display-4 fw-bold card-title">₱<?php include 'functions/pos-total.php'; ?></h4>
-                                <div class="mb-3"><input class="form-control" type="text" name="discount" placeholder="Discount "></div>
-                                <div class="mb-3"><input class="form-control" type="text" name="amount" placeholder="Amount "></div>
+                                <div class="mb-3"><input class="form-control" type="number" name="discount" placeholder="Discount "></div>
+                                <div class="mb-3"><input class="form-control" type="number" name="amount" placeholder="Amount "></div>
                                 <input type="hidden" name="total_sales" value="<?php include 'functions/pos-total.php'; ?>">
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                     <p>Quantity</p>
                     <form class="text-center" action="functions/pos-add-item.php" method="post">
                         <input type="hidden" name="product_id">
-                        <div class="mb-3"><input class="form-control" type="text" name="item_qty" value="1" placeholder="Quantity" required></div>
+                        <div class="mb-3"><input class="form-control" type="number" name="item_qty" value="1" placeholder="Quantity" required></div>
                         <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Add Item</button></div>
                     </form>
                 </div>
